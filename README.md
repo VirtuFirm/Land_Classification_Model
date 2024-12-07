@@ -23,7 +23,7 @@ This project sets the foundation for continuous improvement and scalability, off
 ---
 
 ## 🤝 Contributors
-** Alpha 5 ** will build innovative solutions for a sustainable future. 🌟
+**Alpha 5** will build innovative solutions for a sustainable future. 🌟
 - Aly El-Deen Yasser Ali (Known By Aly El-Badry) -- [Linkedin](https://www.linkedin.com/in/aly-el-badry/)
 - Mohammed Walid (Known by Mohammed Gafour) -- [Linkedin](https://www.linkedin.com/in/mohammadgafour/)
 - Amr Yasser  -- [Linkedin](https://www.linkedin.com/in/amryasser25/)
