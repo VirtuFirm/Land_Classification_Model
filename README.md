@@ -22,8 +22,13 @@ This project sets the foundation for continuous improvement and scalability, off
 
 ---
 
-## 🤝 Contributions  
-Contributions and collaborations are welcome! Together, let’s build innovative solutions for a sustainable future. 🌟  
+## 🤝 Contributors
+** Alpha 5 ** will build innovative solutions for a sustainable future. 🌟
+- Aly El-Deen Yasser Ali (Known By Aly El-Badry) -- [Linkedin](https://www.linkedin.com/in/aly-el-badry/)
+- Mohammed Walid (Known by Mohammed Gafour) -- [Linkedin](https://www.linkedin.com/in/mohammadgafour/)
+- Amr Yasser  -- [Linkedin](https://www.linkedin.com/in/amryasser25/)
+- Dina Zahran -- [Linkedin](https://www.linkedin.com/in/dina-zahran-dz/)
+- Sherin Mohamed -- [Linkedin](https://www.linkedin.com/in/sherin-mohamed-sm/)
 
 ## 📜 License  
 This project is licensed under the [MIT License](LICENSE).  
