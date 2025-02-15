@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to left, black , #000a1a);
+    color: white;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.head{
+    font-size: 5rem;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px #3498bd);
+}
+/* Draw a line under the head with before */
+.head::after{
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: #3498bd;
+    margin: 20px auto;
+    filter: drop-shadow(0 0 5px #3498bd);
+}
+#map{
+    width: 400px;
+    height: 400px;
+    margin: 20px 0;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 5px #3498bd);
+}
+
+#captureBtn{
+    padding: 10px 20px;
+    background: #3498bd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    filter: drop-shadow(0 0 5px #3498bd);
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background: #1f648b;
+}

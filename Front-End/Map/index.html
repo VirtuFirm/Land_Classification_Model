@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satalitor | Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <div class="main">
+        <div class="head">The Map</div>
+        <div id="map"></div>
+        <button id="captureBtn" disabled>Take The Shoot</button>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        window.onload = function () {
+            console.log("Initializing Map...");
+
+            // Define Egypt's bounding box
+            const egyptBounds = [
+                [22.0, 25.0], 
+                [31.6, 36.9]  
+            ];
+
+            // Initialize map
+            const map = L.map('map', {
+                center: [26.8206, 30.8025], // Egypt center
+                zoom: 6,
+                maxBounds: egyptBounds,
+                maxBoundsViscosity: 1.0, // Strict enforcement
+            });
+
+            console.log("Map object:", map); // Debugging
+
+            // Add satellite tiles
+            L.tileLayer('https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=XANnwLyOkpjBovOqPgZk', {
+                attribution: '&copy; MapTiler',
+                minZoom: 5 
+            }).addTo(map);
+
+            
+        };
+    </script>
+
+</body>
+</html>
