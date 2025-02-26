@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satalitor | Alpha 5</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
     <header id="header">
@@ -29,12 +31,20 @@
             <a href="#contact" class="nav-link">Contact Us</a>
         </nav>
     </div>
-
+    <button class="totop">
+        <svg class="svgIcon" viewBox="0 0 384 512">
+            <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+            ></path>
+        </svg>
+    </button>
     <div class="home">
         <div class="head">Satalitor</div>
         <div class="sublog">Explore the Earth Surface</div>
         <div class="owner">Made by Alpha 5</div>
+        <a href="#about" class="arrow"></a>
     </div>
+    
     
     <div class="about" id="about">
         <div class="content">
@@ -42,37 +52,60 @@
             <p class="text">
                 Satalitor is an advanced platform that allows users to explore and analyze specific regions of Earth 
                 using satellite imagery. By selecting an area on the map, our system performs object detection to provide 
-                insights about land use, vegetation, urban development, and more.
+                insights about land.
             </p>
         </div>
-        
-        <div class="image-gallery">
-            <img src="/imgs/386892_sat.jpg" alt="Satellite View of a Land Area">
-            <img src="/imgs/28559_sat.jpg" alt="Urban Satellite Analysis">
-            <img src="/imgs/386993_sat.jpg" alt="Agricultural Land Overview">
+        <div class="cards">
+            <div class="place urban">
+                <div class="icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3 class="place-head">Visionary Analysis</h3>
+                <p class="place-content">Utilizing segmentation masks and class boundaries, our AI-powered system 
+                    provides precise land classification. Identify urban zones, vegetation, 
+                    and barren lands for smarter environmental analysis.</p>
+            </div>
+            <div class="place agriculture">
+                <div class="icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3 class="place-head">Crop Recommendation</h3>
+                <p class="place-content"> Using AI and satellite data, we analyze soil, climate, and rainfall to 
+                    suggest the best crops for your land. Maximize yield and farm smarter 
+                    with data-driven insights.</p>
+            </div>
+            <div class="place barren">
+                <div class="icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="place-head" >Numerical Analysis</h3>
+                <p class="place-content">Our AI-driven numerical analysis provides insights on percentage data, 
+                    soil pH, climate conditions, and fragmentation index. Make informed 
+                    decisions with precise environmental data.</p>
+            </div>
         </div>
     </div>
     <div class="desc">
         <div class="card">
-            <img src="imgs/two.jpg" alt="">
+            <img src="imgs/28559_sat.jpg" alt="">
             <div class="card-content">
-                <h3>Space Analysis</h3>
-                <p>See the different type of land by using space satalite from ur house</p>
+                <h3>Urban Development</h3>
+                <p>See insights about urban development in a specific area, including the density of buildings, roads, and more.</p>
             </div>
         </div>
         <div class="card">
             <div class="card-content">
-                <h3>Urban Development</h3>
-                <p>Our system provides insights about urban development in a specific area, including the density of buildings, roads, and more.</p>
+                <h3>Land Use Analysis</h3>
+                <p>See The Precentage of The Land That is around you that needs for reclamation</p>
             </div>
-            <img src="imgs/planet-earth-background.jpg" alt="">
+            <img src="imgs/386892_sat.jpg" alt="">
         </div>
         
         <div class="card">
-            <img src="imgs/one.jpg" alt="">
+            <img src="imgs/386993_sat.jpg" alt="">
             <div class="card-content">
-                <h3>Land Use Analysis</h3>
-                <p>Our system provides detailed information about the land use of a specific area, including vegetation, urban development, and more.</p>
+                <h3>agriculture Analysis</h3>
+                <p>See What you Can plant in your land for free with no efforts</p>
             </div>
         </div>
     </div>
@@ -114,5 +147,6 @@
     
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="script/index.js"></script>
+    <script src="https://kit.fontawesome.com/YOUR-KIT-ID.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -14,4 +14,41 @@ document.addEventListener('DOMContentLoaded', function() {
     closeButton.addEventListener('click', function() {sidebar.classList.remove('open');});
 });
 
+const toTopButton = document.querySelector(".totop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+        toTopButton.classList.add("show");
+    } else {
+        toTopButton.classList.remove("show");
+    }
+});
+
+toTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Array of class names to apply the fade-in effect
+const classNames = ["about-head", "text", "cards", "card"]; 
+
+// Function to check if an element is in the viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+// Function to apply the fade effect on scroll
+function fadeElements() {
+    classNames.forEach(className => {
+        const elements = document.querySelectorAll(`.${className}`);
+        elements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add("fade");
+            }
+        });
+    });
+}
+window.addEventListener("scroll", fadeElements);
+window.addEventListener("load", fadeElements);
+
 
