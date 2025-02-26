@@ -240,6 +240,47 @@ header {
     animation: FadeIn 1s ease-in-out 2s forwards, bounce 1.5s infinite ease-in-out 3s;
     filter: drop-shadow(0 0 10px #1f324d);
 }
+@media (max-width: 1024px) {
+    .home .head {
+        font-size: 4rem;
+    }
+    .home .sublog {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home {
+        padding: 15px;
+        text-align: center;
+    }
+    .home .head {
+        font-size: 3rem;
+    }
+    .home .sublog {
+        font-size: 1.1rem;
+    }
+    .home .owner {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        padding: 10px;
+    }
+    .home .head {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    .home .sublog {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+    .home .owner {
+        font-size: 0.9rem;
+    }
+}
 
 .totop {
     width: 50px;
@@ -339,30 +380,6 @@ header {
     100% {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .head {
-        font-size: 4rem; 
-    }
-    .sublog {
-        font-size: 1.2rem; 
-    }
-    .owner {
-        font-size: 1rem; 
-    }
-}
-
-@media (max-width: 480px) {
-    .head {
-        font-size: 3rem;
-    }
-    .sublog {
-        font-size: 1rem; 
-    }
-    .owner {
-        font-size: 0.9rem;
     }
 }
 
