@@ -148,3 +148,7 @@ body {
         padding: 10px 20px;
     }
 }
+
+.leaflet-control-container {
+    display: none !important;
+}
