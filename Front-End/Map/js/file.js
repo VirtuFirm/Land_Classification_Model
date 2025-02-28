@@ -30,12 +30,12 @@ window.onload = function () {
         }
     });
     captureBtn.addEventListener("click", () => {
-        // for(let i = 0; i < 1; i++) {
-            // setTimeout(() => {
-                // const lat = 22.0 + Math.random() * (31.6 - 22.0);
-                // const lon = 25.0 + Math.random() * (36.9 - 25.0);
-                // console.log("The image",i," Diminision is",lat, lon);
-                // map.setView([lat, lon], 15);
+        for(let i = 0; i < 1; i++) {
+            setTimeout(() => {
+                const lat = 22.0 + Math.random() * (31.6 - 22.0);
+                const lon = 25.0 + Math.random() * (36.9 - 25.0);
+                console.log("The image",i," Diminision is",lat, lon);
+                map.setView([lat, lon], 15);
             
                 leafletImage(map, function (err, canvas) {
                     if (err) {
@@ -48,7 +48,7 @@ window.onload = function () {
                     link.href = imgData;
                     link.click();
                 });
-            // },10000);
-        // }
+            },10000);
+        }
     });
 };
