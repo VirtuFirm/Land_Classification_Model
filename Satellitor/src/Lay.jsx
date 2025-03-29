@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import './Lay.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import './Lay.css';
 
 function Lay() {
     const [isVisible, setIsVisible] = useState(false);
