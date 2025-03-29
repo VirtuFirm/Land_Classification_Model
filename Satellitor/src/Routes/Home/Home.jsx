@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import urbanDev from "./asserts/28559_sat.jpg"
 import landUse from "./asserts/386892_sat.jpg"
 import agriculture from "./asserts/386993_sat.jpg"
-
+import { motion } from 'framer-motion';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -53,18 +55,33 @@ const Home = () => {
                 <div className="owner">Made by Alpha 5</div>
                 <a href="#about" className="arrow"></a>
             </div>
-            
+            {/* animation to up when i reach the section */}
             <div className="about" id="about">
                 <div className="content">
-                    <h2 className="about-head">About Satellitor</h2>
-                    <p className="text">
+                    <motion.h2 className="about-head"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    >About Satellitor</motion.h2>
+                    <motion.p className="text"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    >
                         Satellitor is an advanced platform that allows users to explore and analyze specific regions of Earth 
                         using satellite imagery. By selecting an area on the map, our system performs object detection to provide 
                         insights about land.
-                    </p>
+                    </motion.p>
                 </div>
                 <div className="cards">
-                    <div className="place urban">
+                    <motion.div className="place urban"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    >
                         <div className="icon">
                             <i className="fa-solid fa-eye"></i>
                         </div>
@@ -72,8 +89,13 @@ const Home = () => {
                         <p className="place-content">Utilizing segmentation masks and class boundaries, our AI-powered system 
                             provides precise land classification. Identify urban zones, vegetation, 
                             and barren lands for smarter environmental analysis.</p>
-                    </div>
-                    <div className="place agriculture">
+                    </motion.div>
+                    <motion.div className="place agriculture"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                    >
                         <div className="icon">
                             <i className="fas fa-seedling"></i>
                         </div>
@@ -81,8 +103,13 @@ const Home = () => {
                         <p className="place-content"> Using AI and satellite data, we analyze soil, climate, and rainfall to 
                             suggest the best crops for your land. Maximize yield and farm smarter 
                             with data-driven insights.</p>
-                    </div>
-                    <div className="place barren">
+                    </motion.div>
+                    <motion.div className="place barren"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 1 }}
+                    >
                         <div className="icon">
                             <i className="fa-solid fa-chart-line"></i>
                         </div>
@@ -90,32 +117,47 @@ const Home = () => {
                         <p className="place-content">Our AI-driven numerical analysis provides insights on percentage data, 
                             soil pH, climate conditions, and fragmentation index. Make informed 
                             decisions with precise environmental data.</p>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <div className="desc">
-                <div className="card">
+                <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="card">
                     <img src={urbanDev} alt="Urban Development" />
                     <div className="card-content urban">
                         <h3>Urban Development</h3>
                         <p>See insights about urban development in a specific area, including the density of buildings, roads, and more.</p>
                     </div>
-                </div>
-                <div className="card">
+                </motion.div>
+                <motion.div className="card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                >
                     <div className="card-content barren">
                         <h3>Land Use Analysis</h3>
                         <p>See The Precentage of The Land That is around you that needs for reclamation</p>
                     </div>
                     <img src={landUse} alt="Land Use Analysis" />
-                </div>
+                </motion.div>
                 
-                <div className="card">
+                <motion.div className="card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                >
                     <img src={agriculture} alt="Agriculture Analysis" />
                     <div className="card-content agriculture">
                         <h3>Agriculture Analysis</h3>
                         <p>See What you Can plant in your land for free with no efforts</p>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             <div className="how" id="how">
@@ -134,7 +176,16 @@ const Home = () => {
                 <h2 className="start-head">Get Started with Satellitor</h2>
                 <p className="start-text">Start Discover you word</p>
                 <div className="box">
-                    <button className="button">Start</button>
+                    <button className="button" onClick={() => navigate('/Map')}>Start</button>
+                    <div className="space">
+                            <span style={{"--i": 31}} className="star"></span>
+                            <span style={{"--i": 12}} className="star"></span>
+                            <span style={{"--i": 57}} className="star"></span>
+                            <span style={{"--i": 93}} className="star"></span>
+                            <span style={{"--i": 23}} className="star"></span>
+                            <span style={{"--i": 70}} className="star"></span>
+                            <span style={{"--i": 6}} className="star"></span>
+                        </div>
                 </div>
             </div>
 
