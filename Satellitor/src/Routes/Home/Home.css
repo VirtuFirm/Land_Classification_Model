@@ -1,35 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body{
-    width: 100%;
-    height: 100%;
-    font-family: 'Orbitron', sans-serif;
-    scroll-behavior: smooth;
-    background: linear-gradient(to left, black , #000a1a);
-    color: white;
-}
-::-webkit-scrollbar {
-    width: 12px; 
-}
-
-::-webkit-scrollbar-track {
-    background: #000000; 
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: linear-gradient(to left, black , #000a1a);; 
-    border-radius: 10px;
-    border: 3px solid #0c1c33; 
-}
- */
-
- header {
+header {
     display: flex;
     align-items: center;
     padding: 1.25rem 5rem;
@@ -193,10 +162,10 @@ html, body{
 }
 
 @keyframes slide {
-    0% { background-image: url('../imgs/galaxy-night-panorama.jpg'); }
-    33% { background-image: url('../imgs/planet-earth-background.jpg'); }
-    66% { background-image: url('../imgs/two.jpg'); }
-    100% { background-image: url('../imgs/galaxy-night-panorama.jpg'); }
+    0% { background-image: url('asserts/galaxy-night-panorama.jpg'); }
+    33% { background-image: url('asserts/planet-earth-background.jpg'); }
+    66% { background-image: url('asserts/two.jpg'); }
+    100% { background-image: url('asserts/galaxy-night-panorama.jpg'); }
 }
 
 .home .head {
@@ -363,9 +332,6 @@ html, body{
         transform: translateY(0) rotate(-45deg); 
     }
 } */
-
-
-
 
 
 @keyframes bounce {
