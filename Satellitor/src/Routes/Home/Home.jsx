@@ -4,7 +4,7 @@ import './Home.css';
 import urbanDev from "./asserts/28559_sat.jpg"
 import landUse from "./asserts/386892_sat.jpg"
 import agriculture from "./asserts/386993_sat.jpg"
-import { motion } from 'framer-motion';
+import { easeIn, easeInOut, motion } from 'framer-motion';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -64,6 +64,7 @@ const Home = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     >About Satellitor</motion.h2>
+
                     <motion.p className="text"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -74,13 +75,21 @@ const Home = () => {
                         using satellite imagery. By selecting an area on the map, our system performs object detection to provide 
                         insights about land.
                     </motion.p>
+
                 </div>
                 <div className="cards">
                     <motion.div className="place urban"
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    whileInView={{ 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { duration: 0.5, delay: 0.6 }
+                    }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
+                    whileHover={{ 
+                        y: -10,
+                        transition: { duration: 0.1, ease: "easeInOut" }
+                    }}
                     >
                         <div className="icon">
                             <i className="fa-solid fa-eye"></i>
@@ -90,12 +99,19 @@ const Home = () => {
                             provides precise land classification. Identify urban zones, vegetation, 
                             and barren lands for smarter environmental analysis.</p>
                     </motion.div>
+
                     <motion.div className="place agriculture"
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    whileInView={{ 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { duration: 0.5, delay: 0.6 }
+                    }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
-                    >
+                    whileHover={{ 
+                        y: -10,
+                        transition: { duration: 0.1, ease: "easeInOut" }
+                    }}>
                         <div className="icon">
                             <i className="fas fa-seedling"></i>
                         </div>
@@ -106,10 +122,16 @@ const Home = () => {
                     </motion.div>
                     <motion.div className="place barren"
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    whileInView={{ 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { duration: 0.5, delay: 0.6 }
+                    }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 1 }}
-                    >
+                    whileHover={{ 
+                        y: -10,
+                        transition: { duration: 0.1, ease: "easeInOut" }
+                    }}>
                         <div className="icon">
                             <i className="fa-solid fa-chart-line"></i>
                         </div>
@@ -118,6 +140,7 @@ const Home = () => {
                             soil pH, climate conditions, and fragmentation index. Make informed 
                             decisions with precise environmental data.</p>
                     </motion.div>
+
                 </div>
             </div>
             <div className="desc">

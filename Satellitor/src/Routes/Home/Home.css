@@ -315,7 +315,6 @@ header {
 }
 
 .place:hover {
-    transform: translateY(-10px);
     box-shadow: 0 0 15px white;
 }
 
@@ -341,9 +340,6 @@ header {
     filter: drop-shadow(0 0 10px #1B4F72);
 }
 
-.place:hover .icon {
-    filter: drop-shadow(0 0 70px rgba(255, 255, 255, 0.9));
-}
 
 .place.urban:hover .icon {
     filter: drop-shadow(0 0 70px #7D00FF); 
@@ -370,9 +366,9 @@ header {
     opacity: 0.5;
 }
 
-.fade {
+/* .fade {
     animation: fadeIn 2s ease-in-out forwards, moveup 1s ease-in-out forwards;
-}
+} */
 
 
 /* Responsive Design */
