@@ -340,7 +340,6 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(106, 14, 171, 0.3);
-    background: rgba(0, 0, 0, 0.2);
     margin: 0 auto;
 }
 
@@ -348,7 +347,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.8) contrast(1.1);
 }
 
 .overlay {
@@ -390,6 +388,7 @@
     border-radius: 22px;
     z-index: -1;
     animation: borderGlow 3s linear infinite;
+    opacity: 0.5;
 }
 
 @keyframes borderGlow {
@@ -1163,6 +1162,265 @@
 
     .empty-state-message {
         font-size: 1rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .Results {
+        width: 90%;
+        margin-top: 100px;
+    }
+
+    .result-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .result-info, .result-container {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .result-img {
+        height: 350px;
+    }
+
+    .chart-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bar-chart, .pie-chart {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .Results {
+        width: 95%;
+        margin-top: 80px;
+    }
+
+    .results-head {
+        font-size: 2.5rem;
+    }
+
+    .results-line {
+        width: 70%;
+    }
+
+    .result-info-head {
+        font-size: 2rem;
+    }
+
+    .result-info-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .result-info-type {
+        font-size: 1.2rem;
+    }
+
+    .result-info-text {
+        font-size: 1.1rem;
+    }
+
+    .result-img {
+        height: 300px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .boundry-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .opacity-control {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .best-crop, .normal-crops {
+        padding: 20px;
+    }
+
+    .best-crop-head, .normal-crops-head {
+        font-size: 1.8rem;
+    }
+
+    .crop-item, .normal-crop-item {
+        padding: 15px;
+    }
+
+    .crop-name, .normal-crop-name {
+        font-size: 1.5rem;
+    }
+
+    .crop-details, .normal-crop-detail {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .crop-desc, .normal-crop-notes {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .normal-crop-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .empty-state {
+        padding: 20px;
+    }
+
+    .empty-state-icon {
+        font-size: 3rem;
+    }
+
+    .empty-state-title {
+        font-size: 1.5rem;
+    }
+
+    .empty-state-message {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Results {
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    .results-head {
+        font-size: 2rem;
+    }
+
+    .result-info-head {
+        font-size: 1.8rem;
+    }
+
+    .result-img {
+        height: 250px;
+    }
+
+    .best-crop-head, .normal-crops-head {
+        font-size: 1.6rem;
+    }
+
+    .crop-name, .normal-crop-name {
+        font-size: 1.3rem;
+    }
+
+    .crop-details strong, .normal-crop-detail-title {
+        min-width: auto;
+    }
+
+    .chart-container {
+        padding: 10px;
+    }
+
+    .chart-content {
+        padding: 10px;
+    }
+
+    .bar-chart, .pie-chart {
+        min-width: 100%;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+
+    .contact-info {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 320px) {
+    .results-head {
+        font-size: 1.8rem;
+    }
+
+    .result-info-head {
+        font-size: 1.5rem;
+    }
+
+    .crop-name, .normal-crop-name {
+        font-size: 1.2rem;
+    }
+
+    .crop-details, .normal-crop-detail {
+        font-size: 0.9rem;
+    }
+
+    .boundry-btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+
+    .opacity-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Fix for landscape orientation on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .Results {
+        margin-top: 60px;
+    }
+
+    .result-img {
+        height: 200px;
+    }
+
+    .crop-item, .normal-crop-item {
+        margin-bottom: 15px;
+    }
+
+    .chart-wrapper {
+        gap: 20px;
+    }
+}
+
+/* Fix for tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .result-content {
+        gap: 40px;
+    }
+
+    .result-img {
+        height: 300px;
+    }
+
+    .chart-wrapper {
+        gap: 30px;
+    }
+
+    .bar-chart {
+        min-width: 350px;
+    }
+
+    .pie-chart {
+        min-width: 300px;
     }
 }
 
