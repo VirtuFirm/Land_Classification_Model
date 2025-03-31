@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../../public/AlphaV nobg.png';
 import './Results.css';
 import { FaBars, FaTimes, FaWater, FaTemperatureHigh, FaCloudRain, FaFlask } from 'react-icons/fa';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend, ArcElement } from "chart.js";
+import { Bar, Pie } from 'react-chartjs-2';
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend, ArcElement);
 
 const Results = () => {
     const [apiData, setApiData] = useState(null);
@@ -34,6 +38,92 @@ const Results = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const processData = (data) => {
+        if (!data) return null;
+        
+        // Filter out zero values and create new objects
+        const filteredPercentage = Object.fromEntries(
+            Object.entries(data.percentage || {}).filter(([_, value]) => value !== 0 && _ != "Background")
+        );
+        
+        const filteredFI = Object.fromEntries(
+            Object.entries(data.normalized_FI || {}).filter(([key, value]) => filteredPercentage[key] !== 0)
+        );
+
+        const themeColors = [
+            '#6A0DAD', // Deep Purple
+            '#8A2BE2', // Blue Violet
+            '#9370DB', // Medium Purple
+            '#BA55D3', // Medium Orchid
+            '#DA70D6', // Orchid
+            '#DDA0DD', // Plum
+            '#EE82EE', // Violet
+            '#FF00FF', // Magenta
+            '#FF69B4', // Hot Pink
+            '#FFB6C1'  // Light Pink
+        ];
+
+        return {
+            barData: {
+                labels: Object.keys(filteredPercentage),
+                datasets: [
+                    {
+                        label: "Normalized Fragmentation Index",
+                        data: Object.values(filteredFI),
+                        backgroundColor: themeColors[0],
+                        borderColor: themeColors[1],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            pieData: {
+                labels: Object.keys(filteredPercentage),
+                datasets: [
+                    {
+                        data: Object.values(filteredPercentage),
+                        backgroundColor: themeColors,
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                    },
+                ],
+            }
+        };
+    };
+
+    const chartData = processData(apiData);
+    
+    const barOptions = {
+        responsive: true,
+        plugins: {
+            legend: { position: "top", labels: { color: "white" } },
+            title: { display: true, text: "Fragmentation Index by Land Type", color: "white" },
+        },
+        scales: {
+            x: { 
+                stacked: true, 
+                ticks: { color: "white" },
+                grid: {
+                    display: false
+                }
+            },
+            y: { 
+                stacked: true, 
+                ticks: { color: "white" },
+                grid: {
+                    display: false
+                }
+            },
+        },
+    };
+
+    const pieOptions = {
+        responsive: true,
+        plugins: {
+            legend: { position: "right", labels: { color: "white" } },
+            title: { display: true, text: "Land Type Distribution", color: "white" },
+        },
+    };
     
     return (
         <>
@@ -156,6 +246,130 @@ const Results = () => {
                                 </div>
                             )}
                         </div>
+                    </div>
+                </div>
+                <h1 className="results-head">Analysis Chart</h1>
+                <hr className="results-line" />
+                <div className="chart-container">
+                    <div className="chart-title">
+                    
+                    </div>
+                    <div className="chart-content">
+                        <div className="chart-wrapper">
+                            {chartData ? (
+                                <>
+                                    <div className="bar-chart">
+                                        <Bar data={chartData.barData} options={barOptions} />
+                                    </div>
+                                    <div className="pie-chart">
+                                        <Pie data={chartData.pieData} options={pieOptions} />
+                                    </div>
+                                </>
+                            ) : (
+                                <p>Loading...</p>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 className="results-head">Crop Recommendation</h1>
+                <hr className="results-line" />
+                <div className="crops-content">
+                    <div className="best-crop">
+                        <h2 className="best-crop-head">Best Crop for your Land</h2>
+                        {apiData?.best_crops && apiData.best_crops.length > 0 ? (
+                            apiData.best_crops.map((crop) => (
+                                <div className="crop-item" key={crop.crop_name}>
+                                    <h3 className="crop-name">{crop.crop_name}</h3>
+                                    <div className="crop-details">
+                                        <strong>Temperature Range:</strong>
+                                        <span>{crop.crop_data.temp_min}°C - {crop.crop_data.temp_max}°C</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Optimal Temperature:</strong>
+                                        <span>{crop.crop_data.temp_opt_min}°C - {crop.crop_data.temp_opt_max}°C</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Rainfall Range:</strong>
+                                        <span>{crop.crop_data.rainfall_min}mm - {crop.crop_data.rainfall_max}mm/year</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Optimal Rainfall:</strong>
+                                        <span>{crop.crop_data.rainfall_opt_min}mm - {crop.crop_data.rainfall_opt_max}mm/year</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Scientific Name:</strong>
+                                        <span>{crop.crop_data.scientific_name}</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Category:</strong>
+                                        <span>{crop.crop_data.category}</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Characteristics:</strong>
+                                        <span>{crop.crop_data.notes}</span>
+                                    </div>
+                                    <div className="crop-desc">
+                                        <strong>Important Notes:</strong> {crop.crop_notes}
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="empty-state best-crop-empty">
+                                <div className="empty-state-icon"></div>
+                                <h3 className="empty-state-title">No Optimal Crops Found</h3>
+                                <p className="empty-state-message">
+                                    Based on the current land conditions, we couldn't find any crops that would be optimal for cultivation. This could be due to extreme weather conditions, soil composition, or other environmental factors.
+                                </p>
+                                <div className="empty-state-suggestion">
+                                    Consider improving soil conditions or exploring alternative land use options
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    <div className="normal-crops">
+                        <h2 className="normal-crops-head">Alternative Crops</h2>
+                        {apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
+                            apiData.normal_crops.map((crop, index) => (
+                                <div className="normal-crop-item" key={index}>
+                                    <h3 className="normal-crop-name">{crop.crop_name}</h3>
+                                    <span className="normal-crop-category">{crop.crop_data.category}</span>
+                                    <div className="normal-crop-grid">
+                                        <div className="normal-crop-detail">
+                                            <span className="normal-crop-detail-title">Temperature Range</span>
+                                            <span className="normal-crop-detail-value">{crop.crop_data.temp_min}°C - {crop.crop_data.temp_max}°C</span>
+                                        </div>
+                                        <div className="normal-crop-detail">
+                                            <span className="normal-crop-detail-title">Optimal Temperature</span>
+                                            <span className="normal-crop-detail-value">{crop.crop_data.temp_opt_min}°C - {crop.crop_data.temp_opt_max}°C</span>
+                                        </div>
+                                        <div className="normal-crop-detail">
+                                            <span className="normal-crop-detail-title">Rainfall Range</span>
+                                            <span className="normal-crop-detail-value">{crop.crop_data.rainfall_min}mm - {crop.crop_data.rainfall_max}mm/year</span>
+                                        </div>
+                                        <div className="normal-crop-detail">
+                                            <span className="normal-crop-detail-title">Optimal Rainfall</span>
+                                            <span className="normal-crop-detail-value">{crop.crop_data.rainfall_opt_min}mm - {crop.crop_data.rainfall_opt_max}mm/year</span>
+                                        </div>
+                                    </div>
+                                    <div className="normal-crop-notes">
+                                        <p className="normal-crop-notes-title">Important Notes</p>
+                                        <p className="normal-crop-notes-text">{crop.crop_notes}</p>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="empty-state normal-crops-empty">
+                                <div className="empty-state-icon"></div>
+                                <h3 className="empty-state-title">No Alternative Crops Available</h3>
+                                <p className="empty-state-message">
+                                    We couldn't find any suitable alternative crops for your land at this time. This might be due to specific environmental conditions or limitations in the current analysis.
+                                </p>
+                                <div className="empty-state-suggestion">
+                                    Try adjusting your search parameters or consult with agricultural experts
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
