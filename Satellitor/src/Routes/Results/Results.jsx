@@ -16,6 +16,7 @@ const Results = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [resultImage, setResultImage] = useState(false);
     const [opacity, setOpacity] = useState(0.7);
+    const capturedMapImage = localStorage.getItem('capturedMapImage');
 
     useEffect(() => {
       axios.get("https://satellitor-test1.onrender.com/process1")
@@ -211,7 +212,7 @@ const Results = () => {
                     </div>
                     <div className="result-container">
                         <div className="result-img">
-                            <img src="/AlphaV nobg.png" alt="result Logo" className="background" />
+                            <img src={capturedMapImage} alt="result Logo" className="background" />
                             {resultImage ? (
                                 <img 
                                     src={`https://satellitor-test1.onrender.com${apiData.mask_image}`} 

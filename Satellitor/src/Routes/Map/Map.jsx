@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Map.css";
 import L from "leaflet";
 import leafletImage from "leaflet-image";
@@ -6,6 +7,7 @@ import "leaflet/dist/leaflet.css";
 
 const Map = () => {
     const mapRef = useRef(null);
+    const navigate = useNavigate();
     const [captureDisabled, setCaptureDisabled] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     
@@ -65,6 +67,19 @@ const Map = () => {
                 }
 
                 canvas.toBlob((blob) => {
+                    // Convert blob to base64 string for localStorage
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        // Save the base64 image data to localStorage
+                        localStorage.setItem('capturedMapImage', reader.result);
+                        // Save coordinates as well
+                        localStorage.setItem('mapCoordinates', JSON.stringify({
+                            latitude: center.lat,
+                            longitude: center.lng
+                        }));
+                    };
+                    reader.readAsDataURL(blob);
+
                     const formData = new FormData();
                     formData.append("latitude", center.lat);
                     formData.append("longitude", center.lng);
@@ -108,7 +123,10 @@ const Map = () => {
             <div className="content-map">
                 <div className="head-map">Map</div>
                 <button 
-                    onClick={handleCapture}
+                    onClick={() => {
+                        handleCapture();
+                        navigate("/results");
+                    }}
                     disabled={captureDisabled || isLoading}
                     id="captureBtn-map"
                     style={{ 
