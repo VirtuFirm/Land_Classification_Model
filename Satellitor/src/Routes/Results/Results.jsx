@@ -373,6 +373,26 @@ const Results = () => {
                     </div>
                 </div>
             </div>
+            <div className="contact" id="contact">
+                <h2 className="contact-title">Contact Us</h2>
+                
+                <p className="contact-text">Have any questions or feedback? Feel free to reach out to us.</p>
+                
+                <div className="contact-container">
+                    <form className="contact-form">
+                        <input type="text" placeholder="Your Name" required />
+                        <input type="email" placeholder="Your Email" required />
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+            
+                    <div className="contact-info">
+                        <p>Email: <a href="mailto:satalitor@gmail.com">virtufirm.org@gmail.com</a></p>
+                        <p>Phone: +20 128 696 4627</p>
+                    </div>
+                </div>
+                <p className="last">This Team is a Part of <a href="https://www.linkedin.com/company/virtufirm" className="virtu">VirtuFirm </a></p>
+            </div>
         </>
         )}
         
