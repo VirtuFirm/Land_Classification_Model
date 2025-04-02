@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Map.css";
@@ -121,7 +122,7 @@ const Map = () => {
                                 "--delay": `${delay}s`,
                                 "--duration": `${duration}s`
                             }} 
-                            className="star"
+                            className="map-star"
                         ></span>
                     );
                 })}
