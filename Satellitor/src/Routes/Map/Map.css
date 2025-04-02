@@ -7,7 +7,9 @@
     flex-wrap: wrap; 
     padding: 2rem;
     gap: 2rem;
-    background: linear-gradient(to bottom, #000000, #1a1a1a, #2a1a3a);
+    background: linear-gradient(to bottom, #000000,#100021);
+    /* background: linear-gradient(to bottom, #000000, #1a1a1a, #2a1a3a); */
+
     color: #ffffff;
     position: relative;
     overflow: hidden;
