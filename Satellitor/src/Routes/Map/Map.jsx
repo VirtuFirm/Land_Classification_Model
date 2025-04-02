@@ -40,10 +40,8 @@ const Map = () => {
             mapRef.current = map;
         };
 
-        // Initialize map after a short delay to ensure DOM is ready
         const timer = setTimeout(initMap, 100);
 
-        // Cleanup function
         return () => {
             clearTimeout(timer);
             if (mapRef.current) {
@@ -67,12 +65,9 @@ const Map = () => {
                 }
 
                 canvas.toBlob((blob) => {
-                    // Convert blob to base64 string for localStorage
                     const reader = new FileReader();
                     reader.onloadend = () => {
-                        // Save the base64 image data to localStorage
                         localStorage.setItem('capturedMapImage', reader.result);
-                        // Save coordinates as well
                         localStorage.setItem('mapCoordinates', JSON.stringify({
                             latitude: center.lat,
                             longitude: center.lng
@@ -85,7 +80,6 @@ const Map = () => {
                     formData.append("longitude", center.lng);
                     formData.append("image", blob, "map_image.png");
 
-                    // Replace with your actual API endpoint
                     fetch("/api/analyze-land", {
                         method: "POST",
                         body: formData
@@ -98,7 +92,6 @@ const Map = () => {
                     })
                     .then(data => {
                         console.log("Image successfully uploaded:", data);
-                        // Handle successful analysis here
                     })
                     .catch(error => {
                         console.error("Error uploading image:", error);
@@ -116,6 +109,24 @@ const Map = () => {
 
     return (
         <div className="main-map">
+            <div className="stars-container">
+                {[...Array(50)].map((_, i) => {
+                    const delay = Math.random() * 2;
+                    const duration = 1.5 + Math.random() * 1;
+                    return (
+                        <span 
+                            key={i} 
+                            style={{
+                                "--i": i,
+                                "--delay": `${delay}s`,
+                                "--duration": `${duration}s`
+                            }} 
+                            className="star"
+                        ></span>
+                    );
+                })}
+            </div>
+            
             <div className="container">
                 <div id="map"></div>
             </div>
@@ -137,7 +148,18 @@ const Map = () => {
                 >
                     {isLoading ? "Analyzing..." : "Start analysing"}
                 </button>
-                <a href="/" className="nav-btn-map">Go to Another Page</a>
+                <div className="nav-container">
+                    <a href="/" className="nav-btn-map">Go to Home</a>
+                    <div className="space">
+                        <span style={{"--i": 31}} className="star"></span>
+                        <span style={{"--i": 12}} className="star"></span>
+                        <span style={{"--i": 57}} className="star"></span>
+                        <span style={{"--i": 93}} className="star"></span>
+                        <span style={{"--i": 23}} className="star"></span>
+                        <span style={{"--i": 70}} className="star"></span>
+                        <span style={{"--i": 6}} className="star"></span>
+                    </div>
+                </div>
             </div>
         </div>
     );

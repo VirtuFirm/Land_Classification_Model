@@ -5,7 +5,7 @@ import urbanDev from "./asserts/28559_sat.jpg"
 import landUse from "./asserts/386892_sat.jpg"
 import agriculture from "./asserts/386993_sat.jpg"
 import { easeIn, easeInOut, motion } from 'framer-motion';
-
+import logo from "../../../public/AlphaV nobg.png"
 const Home = () => {
     const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -26,8 +26,11 @@ const Home = () => {
 
     return (
         <>
-            <header id="header" className={isSticky ? 'sticky' : ''}>
-                <a href="/" className="logo">Satellitor</a>
+            <header id="header"  className={isSticky ? 'header sticky' : 'header'} >
+                <a href="/" className="logo" >
+                    <img src={logo} alt="Satellitor Logo" className="logo-img"/>
+                    Satellitor
+                </a>
                 <div className="nav">
                     <div className="nav-path">
                         <a href="#about" className="nav-link">About</a>

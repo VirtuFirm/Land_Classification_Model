@@ -33,6 +33,7 @@
     background: linear-gradient(to left, black, #000a1a);
     align-items: center;
     transform: translateX(-30px); 
+    box-shadow: 0px 0px 10px 4px #6A0DAD;
 }
 
 .totop:hover .svgIcon {

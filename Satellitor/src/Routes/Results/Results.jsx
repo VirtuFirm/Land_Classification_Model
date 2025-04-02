@@ -278,7 +278,7 @@ const Results = () => {
                 <div className="crops-content">
                     <div className="best-crop">
                         <h2 className="best-crop-head">Best Crop for your Land</h2>
-                        {apiData?.best_crops && apiData.best_crops.length > 0 ? (
+                        {!apiData?.best_crops && apiData.best_crops.length > 0 ? (
                             apiData.best_crops.map((crop) => (
                                 <div className="crop-item" key={crop.crop_name}>
                                     <h3 className="crop-name">{crop.crop_name}</h3>
@@ -330,7 +330,7 @@ const Results = () => {
                     </div>
                     <div className="normal-crops">
                         <h2 className="normal-crops-head">Alternative Crops</h2>
-                        {apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
+                        {!apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
                             apiData.normal_crops.map((crop, index) => (
                                 <div className="normal-crop-item" key={index}>
                                     <h3 className="normal-crop-name">{crop.crop_name}</h3>
