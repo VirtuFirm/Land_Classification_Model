@@ -17,16 +17,17 @@ const Results = () => {
     const [resultImage, setResultImage] = useState(false);
     const [opacity, setOpacity] = useState(0.7);
     const capturedMapImage = localStorage.getItem('capturedMapImage');
+    
+    // Get the stored analysis data
+    const storedData = localStorage.getItem('mapAnalysisData');
+    const analysisData = storedData ? JSON.parse(storedData) : null;
 
     useEffect(() => {
-      axios.get("https://satellitor-test1.onrender.com/process1")
-        .then((response) => {
-          setApiData(response.data);
-          setTimeout(() => setIsLoading(false), 1000);
-        })
-        .catch((error) => console.error("Error fetching data:", error));
-    }, []);
-
+        if (analysisData) {
+            setApiData(analysisData.analysis);
+            setIsLoading(false);
+        }
+    }, [analysisData]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -215,14 +216,14 @@ const Results = () => {
                             <img src={capturedMapImage} alt="result Logo" className="background" />
                             {resultImage ? (
                                 <img 
-                                    src={`https://satellitor-test1.onrender.com${apiData.mask_image}`} 
+                                    src={`http://13.51.134.174:5000${apiData.mask_image}`} 
                                     alt="Result Image" 
                                     className="overlay" 
                                     style={{ opacity: opacity }}
                                 />
                             ) : (
                                 <img 
-                                    src={`https://satellitor-test1.onrender.com${apiData.boundaries_image}`} 
+                                    src={`http://13.51.134.174:5000${apiData.boundaries_image}`} 
                                     alt="result Logo" 
                                     className="overlay" 
                                 />
@@ -278,7 +279,7 @@ const Results = () => {
                 <div className="crops-content">
                     <div className="best-crop">
                         <h2 className="best-crop-head">Best Crop for your Land</h2>
-                        {!apiData?.best_crops && apiData.best_crops.length > 0 ? (
+                        {apiData?.best_crops && apiData.best_crops.length > 0 ? (
                             apiData.best_crops.map((crop) => (
                                 <div className="crop-item" key={crop.crop_name}>
                                     <h3 className="crop-name">{crop.crop_name}</h3>
@@ -330,7 +331,7 @@ const Results = () => {
                     </div>
                     <div className="normal-crops">
                         <h2 className="normal-crops-head">Alternative Crops</h2>
-                        {!apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
+                        {apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
                             apiData.normal_crops.map((crop, index) => (
                                 <div className="normal-crop-item" key={index}>
                                     <h3 className="normal-crop-name">{crop.crop_name}</h3>

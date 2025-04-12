@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Map.css";
@@ -11,6 +10,7 @@ const Map = () => {
     const navigate = useNavigate();
     const [captureDisabled, setCaptureDisabled] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    
     
     useEffect(() => {
         const initMap = () => {
@@ -69,19 +69,15 @@ const Map = () => {
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         localStorage.setItem('capturedMapImage', reader.result);
-                        localStorage.setItem('mapCoordinates', JSON.stringify({
-                            latitude: center.lat,
-                            longitude: center.lng
-                        }));
                     };
                     reader.readAsDataURL(blob);
 
                     const formData = new FormData();
                     formData.append("latitude", center.lat);
                     formData.append("longitude", center.lng);
-                    formData.append("image", blob, "map_image.png");
+                    formData.append("image", blob, "image.png");
 
-                    fetch("/api/analyze-land", {
+                    fetch("http://13.51.134.174:5000/process", {
                         method: "POST",
                         body: formData
                     })
@@ -92,7 +88,14 @@ const Map = () => {
                         return response.json();
                     })
                     .then(data => {
-                        console.log("Image successfully uploaded:", data);
+                        localStorage.setItem('mapAnalysisData', JSON.stringify({
+                            coordinates: {
+                                latitude: center.lat,
+                                longitude: center.lng
+                            },
+                            analysis: data
+                        }));
+                        console.log("Data stored in localStorage:", data);
                     })
                     .catch(error => {
                         console.error("Error uploading image:", error);
