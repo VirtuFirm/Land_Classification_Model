@@ -6,6 +6,7 @@ import landUse from "./asserts/386892_sat.jpg"
 import agriculture from "./asserts/386993_sat.jpg"
 import { easeIn, easeInOut, motion } from 'framer-motion';
 import logo from "../../../public/AlphaV nobg.png"
+
 const Home = () => {
     const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
