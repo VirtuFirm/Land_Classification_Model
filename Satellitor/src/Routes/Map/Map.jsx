@@ -95,7 +95,7 @@ const Map = () => {
                             },
                             analysis: data
                         }));
-                        console.log("Data stored in localStorage:", data);
+                        navigate("/results");
                     })
                     .catch(error => {
                         console.error("Error uploading image:", error);
@@ -140,7 +140,6 @@ const Map = () => {
                 <button 
                     onClick={() => {
                         handleCapture();
-                        navigate("/results");
                     }}
                     disabled={captureDisabled || isLoading}
                     id="captureBtn-map"

@@ -16,16 +16,29 @@ const Results = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [resultImage, setResultImage] = useState(false);
     const [opacity, setOpacity] = useState(0.7);
-    const capturedMapImage = localStorage.getItem('capturedMapImage');
-    
-    // Get the stored analysis data
+    const capturedMapImage = localStorage.getItem('capturedMapImage');    
     const storedData = localStorage.getItem('mapAnalysisData');
     const analysisData = storedData ? JSON.parse(storedData) : null;
 
+    const regionColors = {
+        "Urban": "#ff0000",
+        "Barren": "#d2b48c",
+        "Agriculture": "#00ff00",
+        "Water Surface": "#0000ff",
+        "Forest": "#006400",
+    };
+
     useEffect(() => {
         if (analysisData) {
-            setApiData(analysisData.analysis);
-            setIsLoading(false);
+            const timer = setTimeout(() => {
+                setApiData(analysisData.analysis);
+                setIsLoading(false);
+            }, 3000);
+            
+            return () => clearTimeout(timer);
+        }
+        else{
+            setIsLoading(true);
         }
     }, [analysisData]);
 
@@ -33,13 +46,12 @@ const Results = () => {
         const handleScroll = () => {
             setIsSticky(window.scrollY > 0);
         };
-
         window.addEventListener("scroll", handleScroll);
-
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
 
     const processData = (data) => {
         if (!data) return null;
@@ -229,6 +241,24 @@ const Results = () => {
                                 />
                             )}
                         </div>
+                        {resultImage && (
+                            <div className="color-legend-row">
+                                {Object.entries(apiData?.percentage || {}).map(([region, value]) => {
+                                    if (value > 0 && region !== "Background") {
+                                        return (
+                                            <div key={region} className="color-legend-item">
+                                                <div 
+                                                    className="color-swatch" 
+                                                    style={{ backgroundColor: regionColors[region] }}
+                                                ></div>
+                                                <span className="color-label">{region}</span>
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                            </div>
+                        )}
                         <div className="buttons">
                             <button className="boundry-btn" onClick={() => setResultImage(!resultImage)}>
                                 {resultImage ? "Show Boundaries" : "Show Mask Image"}
@@ -396,12 +426,9 @@ const Results = () => {
                 <p className="last">This Team is a Part of <a href="https://www.linkedin.com/company/virtufirm" className="virtu">VirtuFirm </a></p>
             </div>
         </>
-        )}
-        
+        )}    
     </>
-    
   );
-  
 };
 
 export default Results;
