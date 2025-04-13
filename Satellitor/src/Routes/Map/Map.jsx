@@ -89,7 +89,7 @@ const Map = () => {
                     })
                     .then(data => {
                         localStorage.setItem('mapAnalysisData', JSON.stringify({
-                            coordinates: {
+                            coordinates: {  
                                 latitude: center.lat,
                                 longitude: center.lng
                             },

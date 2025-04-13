@@ -16,6 +16,7 @@ const Results = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [resultImage, setResultImage] = useState(false);
     const [opacity, setOpacity] = useState(0.7);
+    const [visibleCrops, setVisibleCrops] = useState(3);
     const capturedMapImage = localStorage.getItem('capturedMapImage');    
     const storedData = localStorage.getItem('mapAnalysisData');
     const analysisData = storedData ? JSON.parse(storedData) : null;
@@ -330,6 +331,14 @@ const Results = () => {
                                         <span>{crop.crop_data.rainfall_opt_min}mm - {crop.crop_data.rainfall_opt_max}mm/year</span>
                                     </div>
                                     <div className="crop-details">
+                                        <strong>PH Range:</strong>
+                                        <span>{crop.crop_data.ph_min} - {crop.crop_data.ph_max}</span>
+                                    </div>
+                                    <div className="crop-details">
+                                        <strong>Optimal PH Range:</strong>
+                                        <span>{crop.crop_data.ph_opt_min} - {crop.crop_data.ph_opt_max}</span>
+                                    </div>
+                                    <div className="crop-details">
                                         <strong>Scientific Name:</strong>
                                         <span>{crop.crop_data.scientific_name}</span>
                                     </div>
@@ -361,47 +370,59 @@ const Results = () => {
                     </div>
                     <div className="normal-crops">
                         <h2 className="normal-crops-head">Alternative Crops</h2>
-                        {apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
-                            apiData.normal_crops.map((crop, index) => (
-                                <div className="normal-crop-item" key={index}>
-                                    <h3 className="normal-crop-name">{crop.crop_name}</h3>
-                                    <span className="normal-crop-category">{crop.crop_data.category}</span>
-                                    <div className="normal-crop-grid">
-                                        <div className="normal-crop-detail">
-                                            <span className="normal-crop-detail-title">Temperature Range</span>
-                                            <span className="normal-crop-detail-value">{crop.crop_data.temp_min}°C - {crop.crop_data.temp_max}°C</span>
+                        <div className="crop-container-normal">
+                            {apiData?.normal_crops && apiData.normal_crops.length > 0 ? (
+                                <>
+                                    {apiData.normal_crops.slice(0, visibleCrops).map((crop, index) => (
+                                        <div className="normal-crop-item" key={index}>
+                                            <h3 className="normal-crop-name">{crop.crop_name}</h3>
+                                            <span className="normal-crop-category">{crop.crop_data.category}</span>
+                                            <div className="normal-crop-grid">
+                                                <div className="normal-crop-detail">
+                                                    <span className="normal-crop-detail-title">Temperature Range</span>
+                                                    <span className="normal-crop-detail-value">{crop.crop_data.temp_min}°C - {crop.crop_data.temp_max}°C</span>
+                                                </div>
+                                                <div className="normal-crop-detail">
+                                                    <span className="normal-crop-detail-title">Rainfall Range</span>
+                                                    <span className="normal-crop-detail-value">{crop.crop_data.rainfall_min}mm - {crop.crop_data.rainfall_max}mm/year</span>
+                                                </div>
+                                                <div className="crop-details">
+                                                    <strong>PH Range:</strong>
+                                                    <span>{crop.crop_data.ph_min} - {crop.crop_data.ph_max}</span>
+                                                </div>
+                                                <div className="crop-details">
+                                                    <strong>Scientific Name:</strong>
+                                                    <span>{crop.crop_data.scientific_name}</span>
+                                                </div>
+                                            </div>
+                                            <div className="normal-crop-notes">
+                                                <p className="normal-crop-notes-title">Important Notes</p>
+                                                <p className="normal-crop-notes-text">{crop.crop_notes}</p>
+                                            </div>
                                         </div>
-                                        <div className="normal-crop-detail">
-                                            <span className="normal-crop-detail-title">Optimal Temperature</span>
-                                            <span className="normal-crop-detail-value">{crop.crop_data.temp_opt_min}°C - {crop.crop_data.temp_opt_max}°C</span>
-                                        </div>
-                                        <div className="normal-crop-detail">
-                                            <span className="normal-crop-detail-title">Rainfall Range</span>
-                                            <span className="normal-crop-detail-value">{crop.crop_data.rainfall_min}mm - {crop.crop_data.rainfall_max}mm/year</span>
-                                        </div>
-                                        <div className="normal-crop-detail">
-                                            <span className="normal-crop-detail-title">Optimal Rainfall</span>
-                                            <span className="normal-crop-detail-value">{crop.crop_data.rainfall_opt_min}mm - {crop.crop_data.rainfall_opt_max}mm/year</span>
-                                        </div>
-                                    </div>
-                                    <div className="normal-crop-notes">
-                                        <p className="normal-crop-notes-title">Important Notes</p>
-                                        <p className="normal-crop-notes-text">{crop.crop_notes}</p>
+                                    ))}
+                                    {visibleCrops < apiData.normal_crops.length && (
+                                        <button 
+                                            className="show-more-btn"
+                                            onClick={() => setVisibleCrops(prev => Math.min(prev + 3, apiData.normal_crops.length))}
+                                        >
+                                            Show More
+                                        </button>
+                                    )}
+                                </>
+                            ) : (
+                                <div className="empty-state normal-crops-empty">
+                                    <div className="empty-state-icon"></div>
+                                    <h3 className="empty-state-title">No Alternative Crops Available</h3>
+                                    <p className="empty-state-message">
+                                        We couldn't find any suitable alternative crops for your land at this time. This might be due to specific environmental conditions or limitations in the current analysis.
+                                    </p>
+                                    <div className="empty-state-suggestion">
+                                        Try adjusting your search parameters or consult with agricultural experts
                                     </div>
                                 </div>
-                            ))
-                        ) : (
-                            <div className="empty-state normal-crops-empty">
-                                <div className="empty-state-icon"></div>
-                                <h3 className="empty-state-title">No Alternative Crops Available</h3>
-                                <p className="empty-state-message">
-                                    We couldn't find any suitable alternative crops for your land at this time. This might be due to specific environmental conditions or limitations in the current analysis.
-                                </p>
-                                <div className="empty-state-suggestion">
-                                    Try adjusting your search parameters or consult with agricultural experts
-                                </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
