@@ -77,7 +77,7 @@ const Map = () => {
                     formData.append("longitude", center.lng);
                     formData.append("image", blob, "image.png");
 
-                    fetch("http://13.51.134.174:5000/process", {
+                    fetch("https://satellitor.duckdns.org/process", {
                         method: "POST",
                         body: formData
                     })

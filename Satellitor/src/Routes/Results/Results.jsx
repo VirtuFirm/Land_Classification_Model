@@ -229,14 +229,14 @@ const Results = () => {
                             <img src={capturedMapImage} alt="result Logo" className="background" />
                             {resultImage ? (
                                 <img 
-                                    src={`http://13.51.134.174:5000${apiData.mask_image}`} 
+                                    src={`https://satellitor.duckdns.org${apiData.mask_image}`} 
                                     alt="Result Image" 
                                     className="overlay" 
                                     style={{ opacity: opacity }}
                                 />
                             ) : (
                                 <img 
-                                    src={`http://13.51.134.174:5000${apiData.boundaries_image}`} 
+                                    src={`https://satellitor.duckdns.org${apiData.boundaries_image}`} 
                                     alt="result Logo" 
                                     className="overlay" 
                                 />
