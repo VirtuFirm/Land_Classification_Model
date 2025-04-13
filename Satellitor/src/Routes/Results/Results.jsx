@@ -162,8 +162,8 @@ const Results = () => {
                     
                     <ul className='results-nav-items'>
                         <li><NavLink to="/" className="results-nav-item">Home</NavLink></li>
-                        <li><NavLink to="/Map" className="results-nav-item">New Analysis</NavLink></li>
-                        <li><NavLink to="#contact" className="results-nav-item">Contact Us</NavLink></li>
+                        <li><NavLink to="/Map" className="results-nav-item">Map</NavLink></li>
+                        <li><NavLink to="#contact" className="results-nav-item">Contact</NavLink></li>
                     </ul>
                 </div>
             </nav>
@@ -184,8 +184,8 @@ const Results = () => {
                 </div>
                 <ul className='results-nav-items'>
                     <li><NavLink to="/" className="results-nav-item" onClick={() => setIsOpen(false)}>Home</NavLink></li>
-                    <li><NavLink to="/Map" className="results-nav-item" onClick={() => setIsOpen(false)}>New Analysis</NavLink></li>
-                    <li><NavLink to="#contact" className="results-nav-item" onClick={() => setIsOpen(false)}>Contact Us</NavLink></li>
+                    <li><NavLink to="/Map" className="results-nav-item" onClick={() => setIsOpen(false)}>Map</NavLink></li>
+                    <li><NavLink to="#contact" className="results-nav-item" onClick={() => setIsOpen(false)}>Contact</NavLink></li>
                 </ul>
             </nav>
 

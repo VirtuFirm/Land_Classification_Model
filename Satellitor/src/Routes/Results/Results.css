@@ -67,9 +67,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0, 0, 0, 1); /* Dark semi-transparent */
+    background: rgba(0, 0, 0, 1);
     color: #E0E0E0;
-    width: 85%;
+    width: 90%;
     margin: 20px auto;
     padding: 15px 30px;
     border-radius: 20px;
@@ -106,16 +106,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     flex: 3;
+    justify-content: flex-end;
 }
 
 .results-menu .results-nav-items {
     list-style: none;
     display: flex;
-    gap: 50px;
-    margin-left: 100px;
+    gap: 80px;
+    width: auto;
+    margin-left: auto;
+    margin-right: 50px;
 }
 
 .results-nav-item {
@@ -337,6 +339,7 @@
     position: relative;
     width: 90%;
     height: 400px;
+    max-width: 540px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(106, 14, 171, 0.3);
